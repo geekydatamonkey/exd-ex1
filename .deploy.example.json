@@ -1,0 +1,10 @@
+// Edit this with your deployment specifics
+// save as .deploy.json
+
+{
+  "servers": {
+    "dev": {
+      "rsyncDest": "username@host.com:~/public_html/pathfordeployment"
+    }
+  }
+}

@@ -5,6 +5,8 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
+var deploy = require('./.deploy.json'); // deploy specific secrets
+var rsync = require('rsyncwrapper').rsync;
 
 gulp.task('styles', function () {
   return gulp.src('app/styles/main.scss')
