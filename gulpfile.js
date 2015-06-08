@@ -69,7 +69,7 @@ gulp.task('fonts', function () {
 gulp.task('extras', function () {
   return gulp.src([
     'app/*.*',
-    'app/sounds/*.*',
+    'app/**/*.mp3',
     '!app/*.html'
   ], {
     dot: true
