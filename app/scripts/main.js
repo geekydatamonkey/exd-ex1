@@ -11,11 +11,7 @@
 var song, analyzer, img;
 
 var config = {
-  parentClass: 'canvas-wrapper',
-  canvas: {
-    width: 710,
-    height: 200
-  },
+  canvasWrapper: '.canvas-wrapper',
   image: '../images/astley.png',
   sound: '../sounds/rolled.mp3',
   minImageSize: 50,
@@ -26,11 +22,6 @@ var config = {
 };
 
 console.log('You know the rules. And so do I.');
-
-// Helpers
-function getCanvasParent() {
-  return document.getElementsByClassName(config.parentClass)[0];
-}
 
 function drawCenteredImage(img, imageWidth) {
   image(
@@ -57,10 +48,13 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(config.canvas.width, config.canvas.height).parent(getCanvasParent());
-  song.loop();
 
-  // create a new Amplitude analyzer
+  // setup canvas
+  var $canvasWrapper = $(config.canvasWrapper);
+  createCanvas($canvasWrapper.innerWidth(), $canvasWrapper.innerHeight()).parent($canvasWrapper[0]);
+  
+  // setup song
+  song.loop();
   analyzer = new p5.Amplitude();
 
   // Patch the input to an volume analyzer
@@ -79,7 +73,7 @@ function draw() {
   }
 
   var vol = analyzer.getLevel();
-  drawCenteredImage(img, config.minImageSize + vol*config.canvas.height);
+  drawCenteredImage(img, config.minImageSize + vol*height);
 }
 
 // Pause on key press or mouse click
