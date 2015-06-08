@@ -58,6 +58,11 @@ gulp.task('images', function () {
     .pipe(gulp.dest('dist/images'));
 });
 
+gulp.task('build:bower', function() {
+  return gulp.src('bower_components/**/*.min.js')
+    .pipe(gulp.dest('dist/bower_components'));
+});
+
 gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')({
     filter: '**/*.{eot,svg,ttf,woff,woff2}'
@@ -139,7 +144,7 @@ gulp.task('deploy', function() {
   });
 });
 
-gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () {
+gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras', 'build:bower'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
