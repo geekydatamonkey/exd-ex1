@@ -12,8 +12,8 @@ var song, analyzer, img;
 
 var config = {
   canvasWrapper: '.canvas-wrapper',
-  image: '../images/astley.png',
-  sound: '../sounds/rolled.mp3',
+  image: 'images/astley.png', // remember with js paths
+  sound: 'sounds/rolled.mp3', // relative to display page (index.html)
   minImageSize: 50,
   backgroundColor: {
     paused: '#ccc',
