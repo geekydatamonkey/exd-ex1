@@ -120,6 +120,25 @@ gulp.task('wiredep', function () {
     .pipe(gulp.dest('app'));
 });
 
+// DEPLOY
+//////////////////////////////////////////////
+gulp.task('deploy', function() {
+  return rsync({
+    ssh: true,
+    src: './dist/',
+    dest: deploy.servers.dev.rsyncDest,
+    recursive: true,
+    syncDest: true,
+    args: ['--verbose'],
+  }, function(error, stdout, stderr, cmd) {
+      console.log(stdout);
+      console.log(stderr);
+      if (error) {
+        console.log(error.message);
+      }
+  });
+});
+
 gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
